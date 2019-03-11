@@ -28,9 +28,9 @@ my_lp_problem = pulp.LpProblem("Points", pulp.LpMinimize)
 x0 = pulp.LpVariable('x0', lowBound=0, cat='Continuous')
 x1 = pulp.LpVariable('x1', lowBound=0, cat='Continuous')
 x2 = pulp.LpVariable('x2', lowBound=0, cat='Continuous')
-x3 = pulp.LpVariable('x3', lowBound=0, cat='Continuous')
-x4 = pulp.LpVariable('x4', lowBound=0, cat='Continuous')
-x5 = pulp.LpVariable('x5', lowBound=0, cat='Continuous')
+x3 = pulp.LpVariable('x3',  cat='Continuous')
+x4 = pulp.LpVariable('x4',  cat='Continuous')
+x5 = pulp.LpVariable('x5',  cat='Continuous')
 deviation = pulp.LpVariable('deviation', lowBound=0, cat="Continuous")
 
 
