@@ -11,9 +11,11 @@ i=0
 with open('./Corvallis.csv') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';')
     for row in spamreader:
-        data.append(row[len(row)-2])
+        if(row[len(row)-2] !=  "average"):
+            data.append(float(row[len(row)-2]))
     # for row in range(50):
-    #     data.append(spamreader[row][len(row)-2])
+    #     data.append(spamreader[row][len(row)-2]
+
 
 
 
@@ -36,23 +38,27 @@ deviation = pulp.LpVariable('deviation', lowBound=0, cat="Continuous")
 def decentModel(d):
     twopid=2*pi*d
     solution = x0 + x1*d + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) + x5*sin(twopid/(365.25*10.7))
+    # solution = x0 + x1*d
+
     return solution
 
 
 
-# Objective function
 my_lp_problem += deviation, "deviation"
+# Objective function
 
-# for index,point in  enumerate(data):
-for index in range(5):
-    # Constraints
-    # twopid=2*pi*index
-    # my_lp_problem += x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) + x5*sin(twopid/(365.25*10.7)) - point <= deviation
-    # my_lp_problem +=  x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) + x5*sin(twopid/(365.25*10.7)) - point >= -deviation
-    my_lp_problem += decentModel(index) - data[index] <= deviation
-    my_lp_problem += decentModel(index) - data[index] >= -deviation
+for index,point in  enumerate(data):
+# for index in range(1):
+    # # Constraints
+    # my_lp_problem += decentModel(index) - data[index] <= deviation
+    # my_lp_problem += decentModel(index) - data[index] >= -deviation
+    twopid=2*pi*index
+    #solution = x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) <= deviation
+    #solution = x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) >= -deviation
+    my_lp_problem += decentModel(index) - point <= deviation
+    my_lp_problem += decentModel(index) - point >= -deviation
 status = my_lp_problem.solve()
-
+print (status)
 print(pulp.LpStatus[my_lp_problem.status])
 print(pulp.value(x0))
 print(pulp.value(x1))
