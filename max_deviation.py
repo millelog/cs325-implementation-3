@@ -17,7 +17,7 @@ points = [(1,3), (2,5), (3,7), (5,11),(7,14),(8,15),(10,19)]
 
 for point in points:
     # Constraints
-    my_lp_problem += a*point[0]+b-point[1] <= z 
+    my_lp_problem += a*point[0]+b-point[1] <= z
     my_lp_problem += a*point[0]+b-point[1] >= -z
 
 

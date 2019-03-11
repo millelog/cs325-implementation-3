@@ -4,23 +4,23 @@ import pulp as pulp
 
 my_lp_problem = pulp.LpProblem("Bagels n Muffins", pulp.LpMaximize)
 
-x = pulp.LpVariable('x', lowBound=0, cat='Integer')
-y = pulp.LpVariable('y', lowBound=0, cat='Integer')
+bagels = pulp.LpVariable('bagels', lowBound=0, cat='Integer')
+muffins = pulp.LpVariable('muffins', lowBound=0, cat='Integer')
 
 # x = bagels
 # y = Muffins
 
 # Objective function
-my_lp_problem += 12 * x + 10 * y, "profit"
+my_lp_problem += 12 * bagels + 10 * muffins, "profit"
 
 # Constraints
-my_lp_problem += 5 * x + 4 * y  <= 50 # flour
-my_lp_problem += 2 * x + 4 * y <= 30 #eggs
-my_lp_problem += 1 * x + 2 * y <= 20 #sugar
+my_lp_problem += 5 * bagels + 4 * muffins  <= 50 # flour
+my_lp_problem += 2 * bagels + 4 * muffins <= 30 #eggs
+my_lp_problem += 1 * bagels + 2 * muffins <= 20 #sugar
 
 
 status = my_lp_problem.solve()
 
 print(pulp.LpStatus[my_lp_problem.status])
-print(pulp.value(x))
-print(pulp.value(y))
+print(pulp.value(bagels))
+print(pulp.value(muffins))
