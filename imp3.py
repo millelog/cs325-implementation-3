@@ -12,7 +12,7 @@ with open('./Corvallis.csv') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';')
     for row in spamreader:
         if(row[len(row)-2] !=  "average"):
-            data.append(float(row[len(row)-2]))
+            data.append([int(row[len(row)-1]),float(row[len(row)-2])])
     # for row in range(50):
     #     data.append(spamreader[row][len(row)-2]
 
@@ -47,16 +47,11 @@ def decentModel(d):
 my_lp_problem += deviation, "deviation"
 # Objective function
 
-for index,point in  enumerate(data):
+for point in  data:
 # for index in range(1):
     # # Constraints
-    # my_lp_problem += decentModel(index) - data[index] <= deviation
-    # my_lp_problem += decentModel(index) - data[index] >= -deviation
-    twopid=2*pi*index
-    #solution = x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) <= deviation
-    #solution = x0 + x1*index + x2*cos(twopid/365.25) + x3*sin(twopid/365.25) + x4*cos(twopid/(365.25*10.7)) >= -deviation
-    my_lp_problem += decentModel(index) - point <= deviation
-    my_lp_problem += decentModel(index) - point >= -deviation
+    my_lp_problem += decentModel(point[0]) - point[1] <= deviation
+    my_lp_problem += decentModel(point[0]) - point[1] >= -deviation
 status = my_lp_problem.solve()
 print (status)
 print(pulp.LpStatus[my_lp_problem.status])
