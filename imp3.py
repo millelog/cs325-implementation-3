@@ -63,3 +63,5 @@ print(pulp.value(x4))
 print(pulp.value(x5))
 
 print(pulp.value(deviation))
+
+
