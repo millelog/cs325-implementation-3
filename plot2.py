@@ -13,7 +13,7 @@ trend_y = []
 linear_trend_x = []
 linear_trend_y = []
 
-x_0 = part2.pulp.value(part2.x0)
+x_0 = part2.pulp.value(part2.x0) + 1
 x_1 = part2.pulp.value(part2.x1)
 x_2 = part2.pulp.value(part2.x2)
 x_3 = part2.pulp.value(part2.x3)
@@ -43,8 +43,19 @@ for point in part2.data:
 
 #print(trend_x)
 
+linear_eq_str = "y = " + str(x_0) + "x + " + str(x_1)
 
-plt.plot(data_x, data_y , 'ro', markersize=0.5)
-plt.plot(trend_x, trend_y )
-plt.plot(linear_trend_x, linear_trend_y)
+
+plt.plot(data_x, data_y , 'ro', markersize=0.25, label="raw temperature data")
+plt.plot(trend_x, trend_y,  label="temperature model" )
+plt.plot(linear_trend_x, linear_trend_y, label="warming model")
+
+#plt.annotate(linear_eq_str, xy=(linear_trend_x[5000], linear_trend_y[5000]),
+#                xytext=(linear_trend_x[5000] - 50, linear_trend_y[5000] - 15))
+
+plt.legend(loc=0,framealpha=1, fontsize=8)
+plt.xlabel("Days [d]")
+plt.ylabel("Temperature [C]")
+plt.title("Temperature Model of Corvallis, OR")
+
 plt.show()
