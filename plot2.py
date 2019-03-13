@@ -13,7 +13,7 @@ trend_y = []
 linear_trend_x = []
 linear_trend_y = []
 
-x_0 = part2.pulp.value(part2.x0) + 1
+x_0 = part2.pulp.value(part2.x0)
 x_1 = part2.pulp.value(part2.x1)
 x_2 = part2.pulp.value(part2.x2)
 x_3 = part2.pulp.value(part2.x3)
