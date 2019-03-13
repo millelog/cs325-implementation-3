@@ -24,6 +24,7 @@ for point in points:
 status = my_lp_problem.solve()
 
 print(pulp.LpStatus[my_lp_problem.status])
+print("Y={slope}*x+{intercept}".format(slope=pulp.value(a),intercept=pulp.value(b)))
 print(pulp.value(a))
 print(pulp.value(b))
 print(pulp.value(z))
