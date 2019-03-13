@@ -14,8 +14,11 @@ for p in part1.points:
     trend_x.append( p[0] )
     trend_y.append(part1.sol[0]*p[0] + part1.sol[1] )
 
+equStr = "y = " + str(part1.sol[0]) + "x " + str(part1.sol[1], )
 
 plt.plot(data_x, data_y, 'ro')
 plt.plot(trend_x, trend_y)
+plt.annotate(equStr, xy=(trend_x[3], trend_y[3]), xytext=(trend_x[3]-4, trend_y[3]+4), 
+                            arrowprops=dict(facecolor='black', shrink=0.01) )
 plt.show()
 
