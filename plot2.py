@@ -17,15 +17,15 @@ linear_trend_y = []
 # indexed was the LP solving it based on the index
 # day was the LP using the csv "day" colomn, which wasnt quite the index
 
-indexed_variables= []
-day_variables = []
+indexed_variables= [None]*6
+day_variables = [None]*6
+
 #
-# for key in part2.IndexValues:
-#     indexed_variables.append(part2.IndexValues[key])
+# for index in range(6):
+    # indexed_variables[index]=part2.IndexValues["x"+str(index)]
 
-for key in part2.DayValues:
-    day_variables.append(part2.DayValues[key])
-
+for index in range(6):
+    day_variables[index]=part2.DayValues["x"+str(index)]
 
 
 def linearModel(d,vals):
@@ -44,8 +44,6 @@ trend2_x = []
 linear_trend2_x=[]
 linear_trend2_y=[]
 
-print(len(part2.DayData))
-print(len(part2.IndexedData))
 for point in part2.DayData:
     data_x.append(point[0])
     data_y.append(point[1])
@@ -67,8 +65,6 @@ linear_eq_str = "y = " + str(day_variables[0]) + "x + " + str(day_variables[1])
 # linear_eq_str2 = "y = " + str(indexed_variables[0]) + "x + " + str(indexed_variables[1])
 
 
-print(data_x[:50])
-print(data_y[:50])
 plt.plot(data_x, data_y , 'ro', markersize=0.25, label="raw temperature data")
 plt.plot(trend_x, trend_y,  label="temperature model" )
 plt.plot(linear_trend_x, linear_trend_y, label="warming model")
