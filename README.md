@@ -10,6 +10,7 @@ pulp
 
 .....................
 
+### running program:
 After you have installed the required depenecies
  
 there are two files to run
@@ -19,9 +20,12 @@ there are two files to run
 python plot1.py
 ```
 2.run the warming up problem modeling the corvallis change in temperature
+
 ```bash
 python plot2.py
 ```
+
+#### no plots just data
 
 if you just want to run the equation and not the plots for some reason:
 
